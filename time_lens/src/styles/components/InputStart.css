@@ -1,0 +1,14 @@
+.typing-input {
+  width: 500px;
+  padding: 10px;
+  font-size: 18px;
+  border: 2px solid #ccc;
+  color: rgb(168, 164, 164);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.typing-input:focus {
+  border-color: #007bff;
+}

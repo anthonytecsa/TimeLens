@@ -1,0 +1,22 @@
+/* TimelinePage.css */
+.timeline-page {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.timeline-header {
+  padding: 1.3rem;
+  text-align: center;
+  color: white;
+  background-color: #000000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-footer {
+  padding: 1rem;
+  text-align: center;
+  color: white;
+  background-color: #000000;
+  border-top: 1px solid #eee;
+}
