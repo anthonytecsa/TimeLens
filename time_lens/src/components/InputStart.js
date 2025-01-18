@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import "../styles/components/InputStart.css";
 
 const InputStart = ({
-  phrases = ["Hello there!", "Type your query...", "How can I help you?"],
+  phrases,
   onSubmit,
 }) => {
   const [displayText, setDisplayText] = useState("");
-  const [inputValue, setInputValue] = useState(""); // Add this for actual input
+  const [inputValue, setInputValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);

@@ -14,9 +14,49 @@
 }
 
 .timeline-footer {
+  font-size: 20px;
+  height: 100px;
   padding: 1rem;
-  text-align: center;
-  color: white;
-  background-color: #000000;
-  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  color: rgba(0, 0, 0, 0.359);
+  background-color: #ffffff;
+}
+
+.timeline-footer p {
+  margin: 0;
+  animation: float 3s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-right: 10px;
+}
+
+.timeline-footer p:nth-child(2) {
+  animation-delay: 1.5s;
+}
+
+.arrow-icons {
+  display: flex;
+  gap: 0.3rem;
+  margin-top: 0.2rem;
+}
+
+/* Style the icons */
+.timeline-footer i {
+  font-size: 1.2rem;
+}
+
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }

@@ -1,4 +1,4 @@
-// LandingPage.jsx
+// LandingPage.js
 import React from "react";
 import { Clock, Users, MessageCircle } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,8 +8,8 @@ import '../styles/pages/LandingPage.css';
 export default function LandingPage() {
   const navigate = useNavigate();
 
-  const handleSubmission = () => {
-    navigate("/timeline");
+  const handleSubmission = (searchText) => {
+    navigate("/timeline", { state: { searchText } });
   };
 
   return (
