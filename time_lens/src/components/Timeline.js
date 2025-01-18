@@ -123,6 +123,7 @@ const Timeline = ({ events }) => {
               content={node.content}
               isActive={currentNode === index}
               isZoomed={isZoomed && currentNode === index}
+              // add any additional variable/info needed for TimelineNode here (eg maybe related to avatar creation?)
             />
           </React.Fragment>
         ))}
