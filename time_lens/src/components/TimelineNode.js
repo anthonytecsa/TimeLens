@@ -2,8 +2,6 @@
 import React from "react";
 import "../styles/components/TimelineNode.css";
 import { motion } from "framer-motion";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
 
 const TimelineNode = ({ title, content, isActive, isZoomed }) => {
   return (
@@ -29,18 +27,6 @@ const TimelineNode = ({ title, content, isActive, isZoomed }) => {
       >
         <h3>{title}</h3>
         <p>{content}</p>
-        <p> JUST TESTING</p>
-        <Canvas
-          camera={{
-            position: [3,3,3],
-          }}
-        >
-          <OrbitControls />
-          <mesh>
-            <boxGeometry args={[0.5, 0.5, 0.5]} />
-            <meshNormalMaterial />
-          </mesh>
-        </Canvas>
       </motion.div>
     </motion.div>
   );

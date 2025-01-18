@@ -2,6 +2,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import '../styles/components/EventBox.css';
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 
 const EventBox = ({ event, onClose }) => {
   return (
@@ -23,6 +25,17 @@ const EventBox = ({ event, onClose }) => {
         <h2>{event.title}</h2>
         <div className="event-date">{event.date}</div>
         <p>{event.description}</p>
+        <Canvas
+          camera={{
+            position: [3,3,3],
+          }}
+        >
+          <OrbitControls />
+          <mesh>
+            <boxGeometry args={[0.5, 0.5, 0.5]} />
+            <meshNormalMaterial />
+          </mesh>
+        </Canvas>
       </motion.div>
     </motion.div>
   );
