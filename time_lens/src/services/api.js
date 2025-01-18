@@ -7,15 +7,51 @@ export const getTimelineData = async (searchText) => {
   //   params: { search: searchText },
   // });
   // return response.data;
-  return [
+  
+  const nodes = [
+    {
+      id: 0,
+      title: "Node 1",
+      content: "Hi test",
+      eventDetails: {
+        title: "Event 1",
+        description: "Detailed description for Event 1",
+        date: "2023",
+      },
+    },
     {
       id: 1,
-      date: "2023",
-      title: "Sample Event",
-      description: "This is a test event"
-    }
-    // Add more timeline items as needed
-  ]; // api isnt sent for now, just use this as test
+      title: "Node 2",
+      content: "Content for Node 2",
+      eventDetails: {
+        title: "Event 1",
+        description: "Detailed description for Event 1",
+        date: "2023",
+      },
+    },
+    {
+      id: 2,
+      title: "Node 3",
+      content: "Content for Node 3",
+      eventDetails: {
+        title: "Event 1",
+        description: "Detailed description for Event 1",
+        date: "2023",
+      },
+    },
+    {
+      id: 3,
+      title: "Node 4",
+      content: "Content for Node 4",
+      eventDetails: {
+        title: "Event 1",
+        description: "Detailed description for Event 1",
+        date: "2023",
+      },
+    },
+  ];
+
+  return nodes; // api isnt sent for now, just use this as test
 };
 
 export const getPersonaDialogue = async (personaId, userInput) => {

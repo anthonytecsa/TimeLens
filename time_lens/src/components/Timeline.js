@@ -6,53 +6,12 @@ import LineConnector from "./LineConnector";
 import "../styles/components/Timeline.css";
 import EventBox from "./EventBox";
 
-const Timeline = ({ events }) => {
+const Timeline = ({ data }) => {
   const [currentNode, setCurrentNode] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
   const [showEventBox, setShowEventBox] = useState(false);
 
-  const nodes = [
-    {
-      id: 0,
-      title: "Node 1",
-      content: "Content for Node 1",
-      eventDetails: {
-        title: "Event 1",
-        description: "Detailed description for Event 1",
-        date: "2023",
-      },
-    },
-    {
-      id: 1,
-      title: "Node 2",
-      content: "Content for Node 2",
-      eventDetails: {
-        title: "Event 1",
-        description: "Detailed description for Event 1",
-        date: "2023",
-      },
-    },
-    {
-      id: 2,
-      title: "Node 3",
-      content: "Content for Node 3",
-      eventDetails: {
-        title: "Event 1",
-        description: "Detailed description for Event 1",
-        date: "2023",
-      },
-    },
-    {
-      id: 3,
-      title: "Node 4",
-      content: "Content for Node 4",
-      eventDetails: {
-        title: "Event 1",
-        description: "Detailed description for Event 1",
-        date: "2023",
-      },
-    },
-  ];
+  const nodes = data || [];
 
   // Calculate the position to center the current node
   const calculateOffset = (index, scalingFactor) => {

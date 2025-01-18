@@ -10,7 +10,6 @@ const TimelinePage = () => {
   const [timelineData, setTimelineData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  console.log(searchText);
   useEffect(() => {
     const fetchTimelineData = async () => {
       try {
