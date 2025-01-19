@@ -81,3 +81,21 @@ export const getPersonaDialogue = async (personaId, userInput) => {
   
   return "hi";
 };
+
+
+export const generateCharacter = async (characterName, eventName) => {
+  try {
+    // Send a POST request to the backend API
+    const response = await axios.post(`${API_BASE_URL}/api/generate_character`, {
+      character_name: characterName,
+      event_name: eventName,
+    });
+
+    // Return the array of selected IDs
+    return response.data;
+  } catch (error) {
+    console.error("Error generating character:", error);
+    throw error;
+  }
+};
+
