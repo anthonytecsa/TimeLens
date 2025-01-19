@@ -16,8 +16,8 @@
   background-color: black;
   padding: 2rem;
   border-radius: 10px;
-  width: 80%;
-  max-width: 500px;
+  width: 65%;
+  height: 65%;
   position: relative;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -31,9 +31,21 @@
   font-size: 24px;
   cursor: pointer;
   padding: 5px 10px;
+  color: white;
+  
 }
 
 .event-date {
-  color: #666;
   margin-bottom: 1rem;
+}
+.event-title {
+  color: #ffffff;
+}
+.event-description {
+  color: #666;
+}
+
+.event-info {
+  display: flex;
+  justify-content: center;
 }

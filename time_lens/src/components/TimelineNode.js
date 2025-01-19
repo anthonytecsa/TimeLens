@@ -3,30 +3,41 @@ import React from "react";
 import "../styles/components/TimelineNode.css";
 import { motion } from "framer-motion";
 
-const TimelineNode = ({ title, content, isActive, isZoomed }) => {
+const TimelineNode = ({ title, isActive, isZoomed }) => {
   return (
     <motion.div
       className={`timeline-node ${isActive ? "active" : ""}`}
       animate={{
         scale: isActive ? 1.2 : 1,
       }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
     >
+      
       <motion.div
-        className="node-dot"
+        className="node-outer-ring"
         animate={{
-          backgroundColor: isActive ? "#007bff" : "#ccc",
+          scale: isActive ? 1.1 : 1,
+          borderColor: isActive ? "#c4a47c" : "#8b7355",
         }}
-      />
+      >
+        <motion.div
+          className="node-inner-circle"
+          animate={{
+            backgroundColor: isActive ? "#f0d5a0" : "#d4b483",
+            boxShadow: isActive 
+              ? "0 0 15px rgba(196, 164, 124, 0.6)" 
+              : "0 0 5px rgba(139, 115, 85, 0.3)",
+          }}
+        />
+      </motion.div>
       <motion.div
-        className="node-content"
         animate={{
-          opacity: isZoomed ? 1 : 0,
+          opacity: isZoomed ? 0 : 1,
+          y: isActive ? -10 : 0,
         }}
         transition={{ duration: 0.3 }}
       >
         <h3>{title}</h3>
-        <p>{content}</p>
       </motion.div>
     </motion.div>
   );

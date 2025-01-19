@@ -57,8 +57,8 @@ const TimelinePage = () => {
         </p>
         <p>
           Click on personas to start a conversation
-          <i className="fas fa-user"></i>
-        </p>
+          <i className="fas fa-user person-icon"></i>
+          </p>
       </footer>
     </div>
   );

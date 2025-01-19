@@ -35,30 +35,36 @@ const Timeline = ({ data }) => {
     }
 };
 
-  React.useEffect(() => {
-    const handleKeyPress = (event) => {
-      if (event.key === "ArrowRight") {
-        if (showEventBox) {
-          setShowEventBox(false);
-        } else if (isZoomed) {
-          setIsZoomed(false);
-        } else if (currentNode < nodes.length - 1) {
+React.useEffect(() => {
+  const handleKeyPress = (event) => {
+    if (event.key === "ArrowRight") {
+      if (isZoomed) {
+        // If zoomed, first hide event box and zoom out
+        setShowEventBox(false);
+        setIsZoomed(false);
+        // Then move to next node
+        if (currentNode < nodes.length - 1) {
           setCurrentNode(currentNode + 1);
-          setIsZoomed(true);
-          setTimeout(() => setShowEventBox(true), 500); // Show EventBox after zoom animation
         }
-      } else if (event.key === "ArrowLeft") {
-        if (showEventBox) {
-          setShowEventBox(false);
-        } else if (isZoomed) {
-          setIsZoomed(false);
-        } else if (currentNode > 0) {
-          setCurrentNode(currentNode - 1);
-          setIsZoomed(true);
-          setTimeout(() => setShowEventBox(true), 500);
-        }
+      } else {
+        // If not zoomed, zoom in and show event box
+        setIsZoomed(true);
+        setTimeout(() => setShowEventBox(true), 500);
       }
-    };
+    } else if (event.key === "ArrowLeft") {
+      if (isZoomed) {
+        // If zoomed, first hide event box and zoom out
+        setShowEventBox(false);
+        setIsZoomed(false);
+      } else if (currentNode > 0) {
+        // If not zoomed and not at first node, move to previous node
+        setCurrentNode(currentNode - 1);
+        // Then zoom in and show event box
+        setIsZoomed(true);
+        setTimeout(() => setShowEventBox(true), 500);
+      }
+    }
+  };
 
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
@@ -79,10 +85,8 @@ const Timeline = ({ data }) => {
             {index > 0 && <LineConnector />}
             <TimelineNode
               title={node.title}
-              content={node.content}
               isActive={currentNode === index}
               isZoomed={isZoomed && currentNode === index}
-              // add any additional variable/info needed for TimelineNode here (eg maybe related to avatar creation?)
             />
           </React.Fragment>
         ))}

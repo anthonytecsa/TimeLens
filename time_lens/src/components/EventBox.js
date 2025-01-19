@@ -1,9 +1,8 @@
 // EventBox.js
-import React from 'react';
-import { motion } from 'framer-motion';
-import '../styles/components/EventBox.css';
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import React from "react";
+import { motion } from "framer-motion";
+import "../styles/components/EventBox.css";
+import Stage from "./Stage";
 
 const EventBox = ({ event, onClose }) => {
   return (
@@ -21,22 +20,14 @@ const EventBox = ({ event, onClose }) => {
         exit={{ y: 50, opacity: 0 }}
         transition={{ duration: 0.3, delay: 0.1 }}
       >
-        <button className="close-button" onClick={onClose}>×</button>
-        <h2>{event.title}</h2>
-        <div className="event-date">{event.date}</div>
-        <p>{event.description}</p>
-        <Canvas
-          camera={{
-            position: [3,3,3],
-          }}
-        >
-          <color attach="background" args={["#333333"]} />
-          <OrbitControls />
-          <mesh>
-            <boxGeometry args={[2, 2, 2]} />
-            <meshNormalMaterial />
-          </mesh>
-        </Canvas>
+        <button className="close-button" onClick={onClose}>
+          ×
+        </button>
+        <div className="event-info">
+          <h2 className="event-title">{event.title}</h2>
+          <p className="event-description">{event.description}</p>
+        </div>
+        <Stage />
       </motion.div>
     </motion.div>
   );
