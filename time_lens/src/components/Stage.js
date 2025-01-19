@@ -6,6 +6,8 @@ import PersonaStage from "./PersonaStage";
 import ChatBar from "./ChatBar";
 import { getPersonaDialogue } from "../services/api";
 import { Avatar } from "./Avatar";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 const Stage = ({ sub_event }) => {
   const [selectedPersona, setSelectedPersona] = useState(null);
@@ -77,6 +79,18 @@ const Stage = ({ sub_event }) => {
             ))}
           </Suspense>
         </Canvas>
+      </div>
+      {/* <div>
+        {[1, 2, 3].map(id => (
+          <p className="text-white">{personaResponses[id]}</p>
+       ))}
+      </div> */}
+      <div>
+        {[1, 2, 3].map(id => (
+        <Popup trigger={<button>Read Me</button>} position="right center">
+          <div className="text-white">{personaResponses[id]}</div>
+        </Popup>
+        ))}
       </div>
       <ChatBar 
         persona={getPersona(selectedPersona)}
