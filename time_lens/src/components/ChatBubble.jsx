@@ -6,11 +6,11 @@ const ChatBubble = ({ message }) => {
   const groupRef = useRef();
 
   return (
-    <group ref={groupRef} position={[0, 2.5, 0]}>
+    <group ref={groupRef} position={[0, 4.5, 0]}>
       {/* Chat bubble background */}
       <group position={[0, 0.8, 0]}>
         <mesh>
-          <planeGeometry args={[3, 0.8]} />
+          <planeGeometry args={[4, 1.5]} />
           <meshBasicMaterial color="white" transparent opacity={0.8} />
         </mesh>
         <Text
