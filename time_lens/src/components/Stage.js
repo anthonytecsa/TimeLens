@@ -5,6 +5,7 @@ import { OrbitControls } from "@react-three/drei";
 import PersonaStage from "./PersonaStage";
 import ChatBar from "./ChatBar";
 import { getPersonaDialogue } from "../services/api";
+import { Avatar } from "./Avatar";
 
 const Stage = ({ sub_event }) => {
   const [selectedPersona, setSelectedPersona] = useState(null);
@@ -46,6 +47,7 @@ const Stage = ({ sub_event }) => {
         <Canvas
           camera={{ position: [0, 3, 8] }}
           style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+          shadows
         >
           <Suspense fallback={null}>
             <color attach="background" args={["#333333"]} />
@@ -62,13 +64,16 @@ const Stage = ({ sub_event }) => {
               maxDistance={12} // Maximum zoom distance
             />
             {[1, 2, 3].map(id => (
-              <PersonaStage
-                position={[(id-2) * 5, 0, 0]}
-                persona={getPersona(id)}
-                isSelected={selectedPersona === id}
-                onClick={() => handleStageClick(id)}
-                chatMessage={personaResponses[id]}
-              />
+              <>
+                <Avatar position={[(id-2) * 5, 0, 0]} scale={[2, 2, 2]} />
+                <PersonaStage
+                  position={[(id-2) * 5, 0, 0]}
+                  persona={getPersona(id)}
+                  isSelected={selectedPersona === id}
+                  onClick={() => handleStageClick(id)}
+                  chatMessage={personaResponses[id]}
+                />
+              </>
             ))}
           </Suspense>
         </Canvas>
