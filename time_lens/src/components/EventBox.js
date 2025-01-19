@@ -26,6 +26,7 @@ const EventBox = ({ event, onClose }) => {
         <div className="event-info">
           <h2 className="event-title">{event}</h2>
         </div>
+        <Stage />
       </motion.div>
     </motion.div>
   );

@@ -17,7 +17,7 @@ const Stage = () => {
     <div className="stage-container">
       <div className="canvas-container">
         <Canvas
-          camera={{ position: [3, 3, 3], fov: 75 }}
+          camera={{ position: [3, 3, 3] }}
           style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
         >
           <Suspense fallback={null}>
@@ -25,8 +25,6 @@ const Stage = () => {
             <ambientLight intensity={0.5} />
             <directionalLight position={[5, 5, 5]} />
             <OrbitControls />
-
-            <Avatar position={[0, 0, 0]} />
             <PersonaStage
               position={[-5, 0, 0]}
               id={1}
@@ -37,13 +35,13 @@ const Stage = () => {
               position={[0, 0, 0]}
               id={1}
               isSelected={selectedPersona === 2}
-              onClick={() => handleStageClick(1)}
+              onClick={() => handleStageClick(2)}
             />
             <PersonaStage
               position={[5, 0, 0]}
               id={2}
               isSelected={selectedPersona === 3}
-              onClick={() => handleStageClick(2)}
+              onClick={() => handleStageClick(3)}
             />
           </Suspense>
         </Canvas>

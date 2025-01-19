@@ -1,7 +1,7 @@
 import Timeline from "../components/Timeline";
 import { useLocation } from "react-router-dom";
 import "../styles/pages/TimelinePage.css";
-import { getTimelineData } from "../services/api";
+import { getTimelineData, getTimelineData2 } from "../services/api";
 import { useState, useEffect } from "react";
 
 const TimelinePage = () => {
@@ -16,6 +16,10 @@ const TimelinePage = () => {
         setLoading(true);
         const data = await getTimelineData(searchText);
         console.log(data);
+
+        // const data2 = await getTimelineData2(searchText);
+        // console.log("Data2: ", data2);
+        
         setTimelineData(data);
       } catch (err) {
         console.error(err.message);

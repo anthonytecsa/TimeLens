@@ -1,0 +1,60 @@
+/* ChatBar.css */
+.chat-container {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.chat-bar-wrapper {
+  background-color: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  max-width: 800px;
+}
+
+.chat-form {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.chat-input:focus {
+  border-color: #2b5278;
+}
+
+.chat-button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  background-color: #2b5278;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.chat-button:hover {
+  background-color: #1a3f5c;
+}
+
+.chat-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

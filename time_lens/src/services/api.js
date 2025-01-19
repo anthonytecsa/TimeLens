@@ -34,6 +34,22 @@ export const getTimelineData = async (event) => {
   return nodes; // api isnt sent for now, just use this as test
 };
 
+export const getTimelineData2 = async (event) => {
+  const nodes = [];
+
+  for(let i = 0; i < 3; i++) {
+      const response = await axios.get(`${API_BASE_URL}/generate`, {
+        params: { event: event },
+      });
+      nodes.push(
+      {id: response.data.id, title: response.data.subevent_title, content: response.data.content, event: response.data.event}
+      )
+  }
+
+  console.log(nodes);
+  return nodes;
+};
+
 export const getPersonaDialogue = async (personaId, userInput) => {
   // const response = await axios.post(
   //   `${API_BASE_URL}/persona/${personaId}/dialogue`,
@@ -43,7 +59,6 @@ export const getPersonaDialogue = async (personaId, userInput) => {
   // );
   // return response.data;
 
-    
-
+  
   return "hi";
 };
