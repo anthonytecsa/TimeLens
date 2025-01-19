@@ -1,25 +1,29 @@
 import { useGLTF } from '@react-three/drei';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
-export const Asset = ({ url, skeleton, categoryName }) => {
+export const Asset = ({ url, skeleton }) => {
     const { scene } = useGLTF(url);
     const attachedItems = useMemo(() => {
         const items = []
         scene.traverse((child) => {
             if (child.isMesh) {
-                console.log(child)
+                const meshClone = child.clone();
+                meshClone.material = child.material.clone();
+                if (meshClone.material?.name.includes("Color_")) {
+                    meshClone.material.color.set("#4f2703");
+                }
                 items.push({
-                    geometry: child.geometry,
-                    material: child.material,
-                    name: child.name,
-                    morphTargetDictionary: child.morphTargetDictionary,
-                    morphTargetInfluences: child.morphTargetInfluences,
+                    geometry: meshClone.geometry,
+                    material: meshClone.material,
+                    name: meshClone.name,
+                    morphTargetDictionary: meshClone.morphTargetDictionary,
+                    morphTargetInfluences: meshClone.morphTargetInfluences,
                 });
             }
         });
         return items;
     }, [scene]);
-
+    
     return attachedItems.map((item, index) => (
         <skinnedMesh
             key={index}

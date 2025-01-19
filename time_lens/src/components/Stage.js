@@ -32,6 +32,7 @@ const Stage = ({ sub_event }) => {
         <Canvas
           camera={{ position: [0, 3, 8] }}
           style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+          shadows
         >
           <Suspense fallback={null}>
             <color attach="background" args={["#333333"]} />
@@ -47,6 +48,8 @@ const Stage = ({ sub_event }) => {
               minDistance={5} // Minimum zoom distance
               maxDistance={12} // Maximum zoom distance
             />
+
+            <Avatar position={[-5, 0, 0]} scale={[2, 2, 2]} />
             <PersonaStage
               position={[-5, 0, 0]}
               id={1}
@@ -54,16 +57,18 @@ const Stage = ({ sub_event }) => {
               isSelected={selectedPersona === 1}
               onClick={() => handleStageClick(1)}
             />
+            <Avatar position={[0, 0, 0]} scale={[2, 2, 2]} />
             <PersonaStage
               position={[0, 0, 0]}
-              id={1}
+              id={2}
               persona={getPersona(2)}
               isSelected={selectedPersona === 2}
               onClick={() => handleStageClick(2)}
             />
+            <Avatar position={[5, 0, 0]} scale={[2, 2, 2]} urls={urls}/>
             <PersonaStage
               position={[5, 0, 0]}
-              id={2}
+              id={3}
               persona={getPersona(3)}
               isSelected={selectedPersona === 3}
               onClick={() => handleStageClick(3)}
