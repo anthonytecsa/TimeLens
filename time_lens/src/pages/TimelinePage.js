@@ -14,11 +14,8 @@ const TimelinePage = () => {
     const fetchTimelineData = async () => {
       try {
         setLoading(true);
-        const data = await getTimelineData(searchText);
-        console.log(data);
-
-        // const data2 = await getTimelineData2(searchText);
-        // console.log("Data2: ", data2);
+        const data = await getTimelineData2(searchText);
+        console.log("TIME_LINE_DATA2: ", data);
         
         setTimelineData(data);
       } catch (err) {

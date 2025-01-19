@@ -42,7 +42,7 @@ React.useEffect(() => {
         setShowEventBox(false);
         setIsZoomed(false);
         // Then move to next node
-        console.log(nodes);
+        console.log("NODES: ", nodes);
         if (currentNode < nodes.length - 1) {
           setCurrentNode(currentNode + 1);
         }

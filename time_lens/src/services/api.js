@@ -37,16 +37,34 @@ export const getTimelineData = async (event) => {
 export const getTimelineData2 = async (event) => {
   const nodes = [];
 
+  // generate one persona
+
+  // then generate 4 of the chats
+
+  const response = await axios.get(`${API_BASE_URL}/api/generate`, {
+    params: { event: event },
+  });
+
+  let persona = response.data;
+
   for(let i = 0; i < 3; i++) {
-      const response = await axios.get(`${API_BASE_URL}/generate`, {
-        params: { event: event },
+      console.log("start api call. Persona.id: ", persona.id);
+      const response = await axios.get(`${API_BASE_URL}/api/chat`, {
+        params: { persona_id: persona.id },
       });
+
+      console.log("RESPONSE: ", response)
       nodes.push(
-      {id: response.data.id, title: response.data.subevent_title, content: response.data.content, event: response.data.event}
+        {
+          id: i,
+          title: response.data.title,
+          content: response.data.content,
+          event: persona.event
+        }
       )
   }
 
-  console.log(nodes);
+  console.log("NODES TimeData2: ", nodes);
   return nodes;
 };
 
