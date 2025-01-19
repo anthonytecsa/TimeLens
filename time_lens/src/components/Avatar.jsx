@@ -6,8 +6,9 @@ import { Asset } from './Asset';
 import { SkeletonUtils } from "three-stdlib";
 import { useGraph } from "@react-three/fiber";
 
-export const Avatar = ({ props , urls}) => {
-  const test_urls = urls;
+export const Avatar = ({ ...props }) => {
+  const test_url = 'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Head.001.glb';
+  const asset_id = 41;
   const group = useRef();
   const armature_url = 'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Armature.glb';
   
@@ -23,14 +24,13 @@ export const Avatar = ({ props , urls}) => {
       <group name="Scene">
         <group name="Armature" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <primitive object={nodes.mixamorigHips} />
-            {test_urls.map(url => (
-              <Suspense>
-                <Asset
-                  url={url}
-                  skeleton={nodes.Plane.skeleton}
-                />
-              </Suspense>
-            ))}
+          <Suspense key={asset_id}>
+            <Asset
+              // categoryName={'head'}
+              url={test_url}
+              skeleton={nodes.Plane.skeleton}
+            />
+          </Suspense>
         </group>
       </group>
     </group>

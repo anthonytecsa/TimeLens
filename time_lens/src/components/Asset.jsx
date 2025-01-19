@@ -7,13 +7,14 @@ export const Asset = ({ url, skeleton, categoryName }) => {
         const items = []
         scene.traverse((child) => {
             if (child.isMesh) {
-                // console.log(child)
+                const meshClone = child.clone();
+                meshClone.material = child.material.clone();
                 items.push({
-                    geometry: child.geometry,
-                    material: child.material,
-                    name: child.name,
-                    morphTargetDictionary: child.morphTargetDictionary,
-                    morphTargetInfluences: child.morphTargetInfluences,
+                    geometry: meshClone.geometry,
+                    material: meshClone.material,
+                    name: meshClone.name,
+                    morphTargetDictionary: meshClone.morphTargetDictionary,
+                    morphTargetInfluences: meshClone.morphTargetInfluences,
                 });
             }
         });
