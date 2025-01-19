@@ -7,25 +7,25 @@ export const getTimelineData = async (event) => {
   const nodes = [
     {
       id: 0,
-      title: "Node 1",
+      sub_event: "Node 1",
       content: "Hi test",
       event: "Event 1"
     },
     {
       id: 1,
-      title: "Node 2",
+      sub_event: "Node 2",
       content: "Content for Node 2",
       event: "Event 1"
     },
     {
       id: 2,
-      title: "Node 3",
+      sub_event: "Node 3",
       content: "Content for Node 3",
       event: "Event 1"
     },
     {
       id: 3,
-      title: "Node 4",
+      sub_event: "Node 4",
       content: "Content for Node 4",
       event: "Event 1"
     },
@@ -47,7 +47,7 @@ export const getTimelineData2 = async (event) => {
 
   let persona = response.data;
 
-  for(let i = 0; i < 3; i++) {
+  for(let i = 0; i < 4; i++) {
       console.log("start api call. Persona.id: ", persona.id);
       const response = await axios.get(`${API_BASE_URL}/api/chat`, {
         params: { persona_id: persona.id },
@@ -57,9 +57,10 @@ export const getTimelineData2 = async (event) => {
       nodes.push(
         {
           id: i,
-          title: response.data.title,
-          content: response.data.content,
-          event: persona.event
+          sub_event: response.data.title, // sub event title
+          content: response.data.content, // story
+          event: persona.event, // main historical event (user inputted)
+          personas: [persona]
         }
       )
   }
