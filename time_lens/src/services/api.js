@@ -117,16 +117,15 @@ export const getTimelineData2 = async (event) => {
 };
 
 export const getPersonaDialogue = async (personaId, userInput) => {
-  // const response = await axios.post(
-  //   `${API_BASE_URL}/persona/${personaId}/dialogue`,
-  //   {
-  //     persona_id: personaId,
-  //     input: userInput,
-  //   }
-  // );
-  // return response.data; // the content
+  const response = await axios.post(
+    `${API_BASE_URL}/api/chatWithUser`,
+    {
+      persona_id: personaId,
+      input: userInput,
+    }
+  );
+  return response.data; // the content in the form of a string
 
-  return "HI I AM PERSONA"
 };
 
 
