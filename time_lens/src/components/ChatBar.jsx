@@ -1,27 +1,15 @@
 // ChatBar.jsx
 import React, { useState } from "react";
-import { getPersonaDialogue } from "../services/api";
 import "../styles/components/ChatBar.css";
 
-const ChatBar = ({ selectedPersona, setChatResponse }) => {
-  const [userInput, setUserInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  
+const ChatBar = ({ persona, onSendMessage }) => {
+  const [input, setInput] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!userInput.trim() || !selectedPersona) return;
-
-    try {
-      setIsLoading(true);
-      const jsonResponse = await getPersonaDialogue(selectedPersona, userInput);
-      setChatResponse(jsonResponse.content);
-      setUserInput("");
-    } catch (error) {
-      console.error("Error getting persona dialogue:", error);
-    } finally {
-      setIsLoading(false);
+    if (input.trim()) {
+      onSendMessage(input);
+      setInput(""); // Clear input after sending
     }
   };
 
@@ -31,22 +19,17 @@ const ChatBar = ({ selectedPersona, setChatResponse }) => {
         <form onSubmit={handleSubmit} className="chat-form">
           <input
             type="text"
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            placeholder={
-              selectedPersona
-                ? "Type your message..."
-                : "Select a persona to chat"
-            }
-            disabled={!selectedPersona || isLoading}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder={persona ? "Type your message..." : "Select a persona to chat"}
+            disabled={!persona}
             className="chat-input"
           />
           <button
             type="submit"
-            disabled={!selectedPersona || isLoading || !userInput.trim()}
+            disabled={!input.trim() || !persona}
             className="chat-button"
           >
-            {isLoading ? "Sending..." : "Send"}
           </button>
         </form>
       </div>

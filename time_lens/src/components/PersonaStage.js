@@ -3,13 +3,14 @@ import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { Text } from "@react-three/drei"; // Import Text from drei
+import ChatBubble from "./ChatBubble";
 
 const PersonaStage = ({
   position = [0, 0, 0],
-  id,
   isSelected,
   onClick,
   persona,
+  chatMessage
 }) => {
   const groupRef = useRef();
   const materialRef = useRef();
@@ -78,6 +79,11 @@ const PersonaStage = ({
           {persona.name}
         </Text>
       )}
+
+      {/* Chat bubble */}
+      <ChatBubble 
+        message={chatMessage}
+      />
     </group>
   );
 };

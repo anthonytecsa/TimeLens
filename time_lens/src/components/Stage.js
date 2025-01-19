@@ -4,10 +4,12 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import PersonaStage from "./PersonaStage";
 import ChatBar from "./ChatBar";
+import { getPersonaDialogue } from "../services/api";
 
 const Stage = ({ sub_event }) => {
   const [selectedPersona, setSelectedPersona] = useState(null);
-  const [chatResponse, setChatResponse] = useState("");
+  const [personaResponses, setPersonaResponses] = useState([]);
+
 
   const handleStageClick = (id) => {
     setSelectedPersona(id === selectedPersona ? null : id);
@@ -25,6 +27,18 @@ const Stage = ({ sub_event }) => {
         return null;
     }
   };
+
+  const handleSendMessage = async (message) => {
+    try {
+      const response = await getPersonaDialogue(getPersona(selectedPersona).id, message);
+      setPersonaResponses(prev => ({
+        ...prev,
+        [selectedPersona]: response
+      }));
+    } catch (error) {
+      console.error("Error getting persona dialogue:", error);
+    }
+  }
 
   return (
     <div className="stage-container">
@@ -47,37 +61,21 @@ const Stage = ({ sub_event }) => {
               minDistance={5} // Minimum zoom distance
               maxDistance={12} // Maximum zoom distance
             />
-            <PersonaStage
-              position={[-5, 0, 0]}
-              id={1}
-              persona={getPersona(1)}
-              isSelected={selectedPersona === 1}
-              onClick={() => handleStageClick(1)}
-            />
-            <PersonaStage
-              position={[0, 0, 0]}
-              id={1}
-              persona={getPersona(2)}
-              isSelected={selectedPersona === 2}
-              onClick={() => handleStageClick(2)}
-            />
-            <PersonaStage
-              position={[5, 0, 0]}
-              id={2}
-              persona={getPersona(3)}
-              isSelected={selectedPersona === 3}
-              onClick={() => handleStageClick(3)}
-            />
+            {[1, 2, 3].map(id => (
+              <PersonaStage
+                position={[(id-2) * 5, 0, 0]}
+                persona={getPersona(id)}
+                isSelected={selectedPersona === id}
+                onClick={() => handleStageClick(id)}
+                chatMessage={personaResponses[id]}
+              />
+            ))}
           </Suspense>
         </Canvas>
-        <div>
-          <p>{chatResponse}</p>
-        </div>
       </div>
       <ChatBar 
-        selectedPersona={selectedPersona} 
-        personaName={getPersona(selectedPersona)}
-        setChatResponse={setChatResponse}
+        persona={getPersona(selectedPersona)}
+        onSendMessage={handleSendMessage}
       />
     </div>
   );
