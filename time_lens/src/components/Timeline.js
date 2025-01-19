@@ -95,6 +95,7 @@ React.useEffect(() => {
           <EventBox
             sub_event={nodes[currentNode]}
             onClose={() => setShowEventBox(false)}
+            timelineData={data}
           />
         )}
       </AnimatePresence>

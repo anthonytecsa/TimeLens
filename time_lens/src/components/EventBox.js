@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import "../styles/components/EventBox.css";
 import Stage from "./Stage";
 
-const EventBox = ({ sub_event, onClose }) => {
+const EventBox = ({ sub_event, onClose, timelineData }) => {
   return (
     <motion.div
       className="event-box-overlay"
@@ -26,7 +26,7 @@ const EventBox = ({ sub_event, onClose }) => {
         <div className="event-info">
           <h2 className="event-title">{sub_event.sub_event}</h2>
         </div>
-        <Stage sub_event={sub_event} />
+        <Stage sub_event={sub_event} timelineData={timelineData} />
       </motion.div>
     </motion.div>
   );

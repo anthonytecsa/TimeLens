@@ -7,7 +7,7 @@ import ChatBar from "./ChatBar";
 import { getPersonaDialogue, generateCharacter } from "../services/api";
 import { Avatar } from "./Avatar";
 
-const Stage = ({ sub_event }) => {
+const Stage = ({ sub_event, timelineData }) => {
   const [assetUrls, setAssetUrls] = useState([[],[],[]]);
   const [selectedPersona, setSelectedPersona] = useState(null);
   const [personaResponses, setPersonaResponses] = useState([]);
@@ -15,9 +15,9 @@ const Stage = ({ sub_event }) => {
   useEffect(() => {
     const fetchCharacterUrls = async () => {
       try {
-        const urls1 = await generateCharacter(1);
-        const urls2 = await generateCharacter(2);
-        const urls3 = await generateCharacter(3);
+        const urls1 = await generateCharacter(1, timelineData);
+        const urls2 = await generateCharacter(2, timelineData);
+        const urls3 = await generateCharacter(3, timelineData);
         setAssetUrls([urls1, urls2, urls3]);
       } catch (error) {
         console.error("Error fetching character URLs:", error);
@@ -25,6 +25,7 @@ const Stage = ({ sub_event }) => {
     };
 
     fetchCharacterUrls();
+    console.log(assetUrls)
   }, []);
 
   const handleStageClick = (id) => {
@@ -93,17 +94,12 @@ const Stage = ({ sub_event }) => {
           </Suspense>
         </Canvas>
       </div>
-      <div className="absolute">
+      <div style={{position:"absolute", backgroundColor:"rgba(1, 1, 1, 0.35)", borderRadius: "16px"}}>
         {[1, 2, 3].map(id => (
           <p style={{color:"#fff"}}>{personaResponses[id]}</p>
        ))}
       </div>
       <div>
-        {/* {[1, 2, 3].map(id => (
-        <Popup trigger={<button>Read Me</button>} position="right center">
-          <div className="text-white">{personaResponses[id]}</div>
-        </Popup>
-        ))} */}
       </div>
       <ChatBar 
         persona={getPersona(selectedPersona)}
