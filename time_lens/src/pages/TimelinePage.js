@@ -14,9 +14,8 @@ const TimelinePage = () => {
     const fetchTimelineData = async () => {
       try {
         setLoading(true);
-        console.log("hi");
         const data = await getTimelineData(searchText);
-        console.log("bye");
+        console.log(data);
         setTimelineData(data);
       } catch (err) {
         console.error(err.message);
@@ -58,7 +57,7 @@ const TimelinePage = () => {
         <p>
           Click on personas to start a conversation
           <i className="fas fa-user person-icon"></i>
-          </p>
+        </p>
       </footer>
     </div>
   );

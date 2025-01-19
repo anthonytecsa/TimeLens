@@ -10,7 +10,6 @@ const Timeline = ({ data }) => {
   const [currentNode, setCurrentNode] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
   const [showEventBox, setShowEventBox] = useState(false);
-
   const nodes = data || [];
 
   // Calculate the position to center the current node
@@ -43,6 +42,7 @@ React.useEffect(() => {
         setShowEventBox(false);
         setIsZoomed(false);
         // Then move to next node
+        console.log(nodes);
         if (currentNode < nodes.length - 1) {
           setCurrentNode(currentNode + 1);
         }
@@ -95,7 +95,7 @@ React.useEffect(() => {
       <AnimatePresence>
         {showEventBox && (
           <EventBox
-            event={nodes[currentNode].eventDetails}
+            event={nodes[currentNode].event}
             onClose={() => setShowEventBox(false)}
           />
         )}
