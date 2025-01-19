@@ -1,18 +1,31 @@
 // Stage.js
-import React, { useState, Suspense } from "react"; // Add Suspense
+import React, { useState, Suspense, useEffect } from "react"; // Add Suspense
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import PersonaStage from "./PersonaStage";
 import ChatBar from "./ChatBar";
-import { getPersonaDialogue } from "../services/api";
+import { getPersonaDialogue, generateCharacter } from "../services/api";
 import { Avatar } from "./Avatar";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
 
 const Stage = ({ sub_event }) => {
+  const [assetUrls, setAssetUrls] = useState([[],[],[]]);
   const [selectedPersona, setSelectedPersona] = useState(null);
   const [personaResponses, setPersonaResponses] = useState([]);
 
+  useEffect(() => {
+    const fetchCharacterUrls = async () => {
+      try {
+        const urls1 = await generateCharacter(1);
+        const urls2 = await generateCharacter(2);
+        const urls3 = await generateCharacter(3);
+        setAssetUrls([urls1, urls2, urls3]);
+      } catch (error) {
+        console.error("Error fetching character URLs:", error);
+      }
+    };
+
+    fetchCharacterUrls();
+  }, []);
 
   const handleStageClick = (id) => {
     setSelectedPersona(id === selectedPersona ? null : id);
@@ -67,7 +80,7 @@ const Stage = ({ sub_event }) => {
             />
             {[1, 2, 3].map(id => (
               <>
-                <Avatar position={[(id-2) * 5, 0, 0]} scale={[2, 2, 2]} />
+                <Avatar position={[(id-2) * 5, 0, 0]} scale={[2, 2, 2]} urls={assetUrls[id-1]} />
                 <PersonaStage
                   position={[(id-2) * 5, 0, 0]}
                   persona={getPersona(id)}

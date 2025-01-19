@@ -81,9 +81,9 @@ const PersonaStage = ({
       )}
 
       {/* Chat bubble */}
-      {/* <ChatBubble 
+      <ChatBubble 
         message={chatMessage}
-      /> */}
+      />
     </group>
   );
 };
