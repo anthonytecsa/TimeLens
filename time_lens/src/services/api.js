@@ -130,15 +130,25 @@ export const getPersonaDialogue = async (personaId, userInput) => {
 };
 
 
-export const generateCharacter = async (characterName, eventName) => {
+export const generateCharacter = async (persona123) => { // either int 1 2 or 3 to represent their id/position in the Stage.js file
   try {
     // Send a POST request to the backend API
+    let name = ""
+    const nodes = await getTimelineData();
+    if (persona123 == 1) {
+      name = nodes[0].persona1.name
+    } else if (persona123 == 2) {
+      name = nodes[0].persona2.name
+    } else {
+      name = nodes[0].persona3.name
+    }
+
     const response = await axios.post(`${API_BASE_URL}/api/generate_character`, {
-      character_name: characterName,
-      event_name: eventName,
+      character_name: name,
+      event_name: nodes[0].event,
     });
 
-    // Return the array of selected IDs
+    // Return the array of selected .glb URLs
     return response.data;
   } catch (error) {
     console.error("Error generating character:", error);
