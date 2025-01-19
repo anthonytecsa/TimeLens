@@ -14,6 +14,8 @@ export const Avatar = ({ ...props }) => {
 
   
 
+  
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">

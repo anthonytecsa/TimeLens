@@ -5,6 +5,7 @@ import { OrbitControls } from "@react-three/drei";
 import PersonaStage from "./PersonaStage";
 import ChatBar from "./ChatBar";
 import { Avatar } from "./Avatar";
+import { Gltf } from '@react-three/drei'
 
 const Stage = () => {
   const [selectedPersona, setSelectedPersona] = useState(null);
@@ -25,18 +26,21 @@ const Stage = () => {
             <ambientLight intensity={0.5} />
             <directionalLight position={[5, 5, 5]} />
             <OrbitControls />
+            <Avatar position={[-5, 0, 0]} scale={[2, 2, 2]}/>
             <PersonaStage
               position={[-5, 0, 0]}
               id={1}
               isSelected={selectedPersona === 1}
               onClick={() => handleStageClick(1)}
             />
+            <Avatar position={[0, 0, 0]} scale={[2, 2, 2]}/>
             <PersonaStage
               position={[0, 0, 0]}
               id={1}
               isSelected={selectedPersona === 2}
               onClick={() => handleStageClick(2)}
             />
+            <Avatar position={[5, 0, 0]} scale={[2, 2, 2]}/>
             <PersonaStage
               position={[5, 0, 0]}
               id={2}
