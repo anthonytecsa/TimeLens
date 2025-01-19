@@ -1,6 +1,6 @@
 // Avatar.js
-import React, { useRef, useMemo } from 'react';
-import { useGLTF } from '@react-three/drei';
+import React, { useRef, useMemo, useEffect } from 'react';
+import { useAnimations, useGLTF, useFBX } from '@react-three/drei';
 import { Suspense } from 'react';
 import { Asset } from './Asset';
 import { SkeletonUtils } from "three-stdlib";
@@ -19,10 +19,16 @@ export const Avatar = ({ urls, ...props }) => {
   const test_urls = urls ? urls : default_character;
   const group = useRef();
   const armature_url = 'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Armature.glb';
-  
+  const idle_url = 'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Idle.fbx';
+  const { animations } = useFBX(idle_url);
+  const { actions } = useAnimations(animations, group);
   const { scene } = useGLTF(armature_url);
-  const clone = useMemo(() => SkeletonUtils.clone(scene), [scene])
-  const { nodes } = useGraph(clone)
+  const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
+  const { nodes } = useGraph(clone);
+
+  useEffect(() => {
+      actions["mixamo.com"]?.play();
+  }, [actions]);
 
   return (
     <group ref={group} {...props} dispose={null}>
