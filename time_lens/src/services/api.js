@@ -7,27 +7,75 @@ export const getTimelineData = async (event) => {
   const nodes = [
     {
       id: 0,
-      sub_event: "Node 1",
-      content: "Hi test",
-      event: "Event 1"
+      sub_event: "subevent",
+      content: "story",
+      event: "bigEvent",
+      persona1: {
+        id: "id1",
+        name: "personaName1"
+      },
+      persona2: {
+        id: "id2",
+        name: "personaName2",
+      },
+      persona3: {
+        id: "id3",
+        name: "personaName3"
+      }
     },
     {
       id: 1,
       sub_event: "Node 2",
       content: "Content for Node 2",
-      event: "Event 1"
+      event: "Event 1",
+      persona1: {
+        id: "id1",
+        name: "personaName1"
+      },
+      persona2: {
+        id: "id2",
+        name: "personaName2",
+      },
+      persona3: {
+        id: "id3",
+        name: "personaName3"
+      }
     },
     {
       id: 2,
       sub_event: "Node 3",
       content: "Content for Node 3",
-      event: "Event 1"
+      event: "Event 1",
+      persona1: {
+        id: "id1",
+        name: "personaName1"
+      },
+      persona2: {
+        id: "id2",
+        name: "personaName2",
+      },
+      persona3: {
+        id: "id3",
+        name: "personaName3"
+      }
     },
     {
       id: 3,
       sub_event: "Node 4",
       content: "Content for Node 4",
-      event: "Event 1"
+      event: "Event 1",
+      persona1: {
+        id: "id1",
+        name: "personaName1"
+      },
+      persona2: {
+        id: "id2",
+        name: "personaName2",
+      },
+      persona3: {
+        id: "id3",
+        name: "personaName3"
+      }
     },
   ];
 
@@ -54,13 +102,12 @@ export const getTimelineData2 = async (event) => {
       });
 
       console.log("RESPONSE: ", response)
-      nodes.push(
+      nodes.push( // node is a subevent
         {
           id: i,
           sub_event: response.data.title, // sub event title
           content: response.data.content, // story
           event: persona.event, // main historical event (user inputted)
-          personas: [persona]
         }
       )
   }

@@ -41,8 +41,6 @@ React.useEffect(() => {
         // If zoomed, first hide event box and zoom out
         setShowEventBox(false);
         setIsZoomed(false);
-        // Then move to next node
-        console.log("NODES: ", nodes);
         if (currentNode < nodes.length - 1) {
           setCurrentNode(currentNode + 1);
         }
@@ -95,7 +93,7 @@ React.useEffect(() => {
       <AnimatePresence>
         {showEventBox && (
           <EventBox
-            event={nodes[currentNode].event}
+            sub_event={nodes[currentNode]}
             onClose={() => setShowEventBox(false)}
           />
         )}
