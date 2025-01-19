@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import "../styles/pages/TimelinePage.css";
 import { getTimelineData, getTimelineData2 } from "../services/api";
 import { useState, useEffect } from "react";
+import LoadingIndicator from "../components/LoadingIndicator"; // Import the LoadingIndicator component
 
 const TimelinePage = () => {
   const location = useLocation();
@@ -16,7 +17,7 @@ const TimelinePage = () => {
         setLoading(true);
         const data = await getTimelineData(searchText); // CHANGE TO 2 LATER
         console.log("TIME_LINE_DATA2: ", data);
-        
+
         setTimelineData(data);
       } catch (err) {
         console.error(err.message);
@@ -32,7 +33,7 @@ const TimelinePage = () => {
     }
   }, [searchText]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <LoadingIndicator />; // Use the LoadingIndicator component here
   if (!timelineData) return <div>No data available</div>;
 
   return (
