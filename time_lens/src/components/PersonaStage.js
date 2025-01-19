@@ -2,8 +2,15 @@
 import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { Text } from "@react-three/drei"; // Import Text from drei
 
-const PersonaStage = ({ position = [0, 0, 0], id, isSelected, onClick }) => {
+const PersonaStage = ({
+  position = [0, 0, 0],
+  id,
+  isSelected,
+  onClick,
+  persona,
+}) => {
   const groupRef = useRef();
   const materialRef = useRef();
 
@@ -53,6 +60,23 @@ const PersonaStage = ({ position = [0, 0, 0], id, isSelected, onClick }) => {
             emissiveIntensity={0.5}
           />
         </mesh>
+      )}
+
+      {/* Persona name text */}
+      {persona && (
+        <Text
+          position={[0, 0.5, 1.2]} // Moved forward and up
+          fontSize={0.4}
+          color="white"
+          anchorX="center"
+          anchorY="middle"
+          // Make text always face the camera
+          rotation={[0, 0, 0]}
+          renderOrder={1}
+          depthTest={false}
+        >
+          {persona.name}
+        </Text>
       )}
     </group>
   );

@@ -3,7 +3,7 @@ import React from "react";
 import "../styles/components/TimelineNode.css";
 import { motion } from "framer-motion";
 
-const TimelineNode = ({ title, isActive, isZoomed }) => {
+const TimelineNode = ({ sub_event, isActive, isZoomed }) => {
   return (
     <motion.div
       className={`timeline-node ${isActive ? "active" : ""}`}
@@ -37,7 +37,7 @@ const TimelineNode = ({ title, isActive, isZoomed }) => {
         }}
         transition={{ duration: 0.3 }}
       >
-        <h3>{title}</h3>
+        <h3>{sub_event}</h3>
       </motion.div>
     </motion.div>
   );

@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import { getPersonaDialogue } from "../services/api";
 import "../styles/components/ChatBar.css";
 
-const ChatBar = ({ selectedPersona }) => {
+const ChatBar = ({ selectedPersona, setChatResponse }) => {
   const [userInput, setUserInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,7 +15,8 @@ const ChatBar = ({ selectedPersona }) => {
 
     try {
       setIsLoading(true);
-      await getPersonaDialogue(selectedPersona, userInput);
+      const jsonResponse = await getPersonaDialogue(selectedPersona, userInput);
+      setChatResponse(jsonResponse.content);
       setUserInput("");
     } catch (error) {
       console.error("Error getting persona dialogue:", error);
