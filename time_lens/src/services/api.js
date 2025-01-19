@@ -70,16 +70,16 @@ export const getTimelineData2 = async (event) => {
 };
 
 export const getPersonaDialogue = async (personaId, userInput) => {
-  // const response = await axios.post(
-  //   `${API_BASE_URL}/persona/${personaId}/dialogue`,
-  //   {
-  //     input: userInput,
-  //   }
-  // );
-  // return response.data;
+  const response = await axios.post(
+    `${API_BASE_URL}/persona/${personaId}/dialogue`,
+    {
+      persona_id: personaId,
+      input: userInput,
+    }
+  );
+  return response.data; // the content
 
   
-  return "hi";
 };
 
 

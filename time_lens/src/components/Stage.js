@@ -8,6 +8,7 @@ import { Avatar } from "./Avatar";
 
 const Stage = () => {
   const [selectedPersona, setSelectedPersona] = useState(null);
+  const [chatResponse, setChatResponse] = useState("");
 
   const handleStageClick = (id) => {
     setSelectedPersona(id === selectedPersona ? null : id);
@@ -45,8 +46,11 @@ const Stage = () => {
             />
           </Suspense>
         </Canvas>
+        <div>
+          <p>{chatResponse}</p>
+        </div>
       </div>
-      <ChatBar selectedPersona={selectedPersona} />
+      <ChatBar selectedPersona={selectedPersona} setChatResponse={setChatResponse} />
     </div>
   );
 };

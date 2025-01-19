@@ -84,7 +84,7 @@ React.useEffect(() => {
           <React.Fragment key={node.id}>
             {index > 0 && <LineConnector />}
             <TimelineNode
-              title={node.title}
+              sub_event={node.sub_event}
               isActive={currentNode === index}
               isZoomed={isZoomed && currentNode === index}
             />
