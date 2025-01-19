@@ -1,7 +1,7 @@
 import { useGLTF } from '@react-three/drei';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
-export const Asset = ({ url, skeleton, categoryName }) => {
+export const Asset = ({ url, skeleton }) => {
     const { scene } = useGLTF(url);
     const attachedItems = useMemo(() => {
         const items = []
@@ -9,6 +9,9 @@ export const Asset = ({ url, skeleton, categoryName }) => {
             if (child.isMesh) {
                 const meshClone = child.clone();
                 meshClone.material = child.material.clone();
+                if (meshClone.material?.name.includes("Color_")) {
+                    meshClone.material.color.set("#4f2703");
+                }
                 items.push({
                     geometry: meshClone.geometry,
                     material: meshClone.material,
@@ -20,7 +23,7 @@ export const Asset = ({ url, skeleton, categoryName }) => {
         });
         return items;
     }, [scene]);
-
+    
     return attachedItems.map((item, index) => (
         <skinnedMesh
             key={index}

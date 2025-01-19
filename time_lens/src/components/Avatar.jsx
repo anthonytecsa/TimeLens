@@ -7,17 +7,22 @@ import { SkeletonUtils } from "three-stdlib";
 import { useGraph } from "@react-three/fiber";
 
 export const Avatar = ({ urls, ...props }) => {
-  const test_urls = urls;
-  let num = 1;
+  const default_character = [
+    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Head.001.glb',
+    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Eyes.001.glb',
+    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Top.001.glb',
+    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Bottom.002.glb',
+    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Nose.002.glb',
+    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Shoes.002.glb',
+    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Hair.005.glb'
+  ];
+  const test_urls = urls ? urls : default_character;
   const group = useRef();
   const armature_url = 'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Armature.glb';
   
   const { scene } = useGLTF(armature_url);
-  // Skinned meshes cannot be re-used in threejs without cloning them
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene])
-  // useGraph creates two flat object collections for nodes and materials
   const { nodes } = useGraph(clone)
-  // console.log(nodes);
 
   return (
     <group ref={group} {...props} dispose={null}>

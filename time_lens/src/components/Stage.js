@@ -13,22 +13,22 @@ const Stage = () => {
     setSelectedPersona(id === selectedPersona ? null : id);
   };
   const urls = ['https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Head.001.glb'];
-  const avatar_1_customization = [
-    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Head.001.glb',
-    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Eyes.002.glb',
-    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/FacialHair.002.glb',
-    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Nose.002.glb',
-    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Shoes.002.glb',
-    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Hair.007.glb'
-  ];
-  const avatar_2_customization = [
-    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Head.001.glb',
-    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Eyes.002.glb',
-    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/FacialHair.006.glb',
-    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Nose.002.glb',
-    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Shoes.001.glb',
-    'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Hair.001.glb'
-  ];
+  // const avatar_1_customization = [
+  //   'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Head.001.glb',
+  //   'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Eyes.002.glb',
+  //   'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/FacialHair.002.glb',
+  //   'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Nose.002.glb',
+  //   'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Shoes.002.glb',
+  //   'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Hair.007.glb'
+  // ];
+  // const avatar_2_customization = [
+  //   'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Head.001.glb',
+  //   'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Eyes.002.glb',
+  //   'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/FacialHair.006.glb',
+  //   'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Nose.002.glb',
+  //   'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Shoes.001.glb',
+  //   'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Hair.001.glb'
+  // ];
 
   return (
     <div className="stage-container">
@@ -49,14 +49,14 @@ const Stage = () => {
               minAzimuthAngle={-Math.PI / 4}
               maxAzimuthAngle={Math.PI / 4}
             />
-            <Avatar position={[-5, 0, 0]} scale={[2, 2, 2]} urls={avatar_1_customization} />
+            <Avatar position={[-5, 0, 0]} scale={[2, 2, 2]} />
             <PersonaStage
               position={[-5, 0, 0]}
               id={1}
               isSelected={selectedPersona === 1}
               onClick={() => handleStageClick(1)}
             />
-            <Avatar position={[0, 0, 0]} scale={[2, 2, 2]} urls={avatar_2_customization}/>
+            <Avatar position={[0, 0, 0]} scale={[2, 2, 2]} />
             <PersonaStage
               position={[0, 0, 0]}
               id={2}
