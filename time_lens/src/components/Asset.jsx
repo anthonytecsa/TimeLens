@@ -7,7 +7,7 @@ export const Asset = ({ url, skeleton, categoryName }) => {
         const items = []
         scene.traverse((child) => {
             if (child.isMesh) {
-                console.log(child)
+                // console.log(child)
                 items.push({
                     geometry: child.geometry,
                     material: child.material,
