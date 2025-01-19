@@ -47,7 +47,7 @@ const Stage = ({ sub_event }) => {
     <div className="stage-container">
       <div className="canvas-container">
         <Canvas
-          camera={{ position: [0, 4, 8] }}
+          camera={{ position: [0, 3, 8] }}
           style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
           shadows
         >
@@ -80,17 +80,17 @@ const Stage = ({ sub_event }) => {
           </Suspense>
         </Canvas>
       </div>
-      {/* <div>
+      <div className="absolute">
         {[1, 2, 3].map(id => (
-          <p className="text-white">{personaResponses[id]}</p>
+          <p style={{color:"#fff"}}>{personaResponses[id]}</p>
        ))}
-      </div> */}
+      </div>
       <div>
-        {[1, 2, 3].map(id => (
+        {/* {[1, 2, 3].map(id => (
         <Popup trigger={<button>Read Me</button>} position="right center">
           <div className="text-white">{personaResponses[id]}</div>
         </Popup>
-        ))}
+        ))} */}
       </div>
       <ChatBar 
         persona={getPersona(selectedPersona)}
