@@ -10,7 +10,9 @@ export const Avatar = ({ ...props }) => {
   const group = useRef();
   const armature_url = 'https://iwohhqwngzhfdetoybfw.supabase.co/storage/v1/object/public/avatar_customization/Armature.glb';
   const { nodes } = useGLTF(armature_url);
-//   console.log(nodes);
+  // console.log(nodes);
+
+  
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -19,7 +21,7 @@ export const Avatar = ({ ...props }) => {
           <primitive object={nodes.mixamorigHips} />
           <Suspense key={asset_id}>
             <Asset
-              categoryName={'head'}
+              // categoryName={'head'}
               url={test_url}
               skeleton={nodes.Plane.skeleton}
             />
