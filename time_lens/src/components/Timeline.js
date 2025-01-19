@@ -41,8 +41,6 @@ React.useEffect(() => {
         // If zoomed, first hide event box and zoom out
         setShowEventBox(false);
         setIsZoomed(false);
-        // Then move to next node
-        console.log("NODES: ", nodes);
         if (currentNode < nodes.length - 1) {
           setCurrentNode(currentNode + 1);
         }
@@ -84,7 +82,7 @@ React.useEffect(() => {
           <React.Fragment key={node.id}>
             {index > 0 && <LineConnector />}
             <TimelineNode
-              title={node.title}
+              sub_event={node.sub_event}
               isActive={currentNode === index}
               isZoomed={isZoomed && currentNode === index}
             />
@@ -95,7 +93,7 @@ React.useEffect(() => {
       <AnimatePresence>
         {showEventBox && (
           <EventBox
-            event={nodes[currentNode].event}
+            sub_event={nodes[currentNode]}
             onClose={() => setShowEventBox(false)}
           />
         )}
